@@ -48,11 +48,17 @@ public class Templates {
     }
 
     static String readResourceContent(String filename) {
-        def templateFileUrl = Templates.class.getClassLoader().getResource(filename)
-        if (templateFileUrl == null) {
-            throw new FileNotFoundException("File not found: $filename")
+        def templateFileUrl
+        def templateFile = new File(filename)
+        if (templateFile.exists()) {
+          templateFileUrl = templateFile.toURI().toURL()
+        } else {
+          def resource = Templates.class.getClassLoader().getResource(filename)
+          if (resource == null) {
+              throw new FileNotFoundException("File not found: $filename")
+          }
+          templateFileUrl = new URL(resource.toString())
         }
-        templateFileUrl = new URL(templateFileUrl.toString())
 
         try {
             return templateFileUrl.openStream().getText("UTF-8")
