@@ -177,6 +177,11 @@ class LicenseToolsPlugin implements Plugin<Project> {
                 libraryInfo.filename = o.filename
                 libraryInfo.artifactId = o.artifactId
                 libraryInfo.url = libraryInfo.url ?: o.url
+            } else {
+              libraryInfo.license = libraryInfo.license ?: ""
+              libraryInfo.filename = libraryInfo.filename ?: ""
+              libraryInfo.artifactId = libraryInfo.artifactId ?: ""
+              libraryInfo.url = libraryInfo.url ?: ""
             }
             try {
                 content.append(Templates.buildLicenseHtml(libraryInfo));

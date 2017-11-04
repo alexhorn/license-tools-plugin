@@ -22,6 +22,8 @@ public class LibraryInfo implements Comparable<LibraryInfo> {
 
     boolean skip = false
 
+    boolean force = false
+
     // from libraries.yml
     public static LibraryInfo fromYaml(Object lib) {
         def libraryInfo = new LibraryInfo()
@@ -42,6 +44,7 @@ public class LibraryInfo implements Comparable<LibraryInfo> {
         libraryInfo.licenseUrl = lib.licenseUrl ?: ""
         libraryInfo.notice = lib.notice as String
         libraryInfo.skip = lib.skip as boolean
+        libraryInfo.force = lib.force as boolean
         libraryInfo.url = lib.url as String
         return libraryInfo
     }

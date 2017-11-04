@@ -49,7 +49,7 @@ public class DependencySet implements Iterable<LibraryInfo> {
     public DependencySet notListedIn(DependencySet dependencySet) {
         DependencySet notListed = new DependencySet();
         for (LibraryInfo libraryInfo : this) {
-            if (!dependencySet.contains(libraryInfo.getArtifactId()) && !libraryInfo.isSkip()) {
+            if (!dependencySet.contains(libraryInfo.getArtifactId()) && !libraryInfo.isSkip() && !libraryInfo.isForce()) {
                 notListed.add(libraryInfo);
             }
         }
